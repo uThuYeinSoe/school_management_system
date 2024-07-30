@@ -1,11 +1,17 @@
 package com.school_management_system.rdo;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class InstructorRequestData {
+    @JsonProperty("instructor_id")
+    private int instructorId;
     private String firstName;
     private String lastName;
     private String email;
     private String youtubeChannel;
     private String hobby;
+    @JsonProperty("instructor_detail_id")
+    private int instructorDetailId;
 
     public InstructorRequestData(){}
 
@@ -15,6 +21,22 @@ public class InstructorRequestData {
         this.email = email;
         this.youtubeChannel = youtubeChannel;
         this.hobby = hobby;
+    }
+
+    public int getInstructorId() {
+        return instructorId;
+    }
+
+    public void setInstructorId(int instructorId) {
+        this.instructorId = instructorId;
+    }
+
+    public int getInstructorDetailId() {
+        return instructorDetailId;
+    }
+
+    public void setInstructorDetailId(int instructorDetailId) {
+        this.instructorDetailId = instructorDetailId;
     }
 
     public String getFirstName() {

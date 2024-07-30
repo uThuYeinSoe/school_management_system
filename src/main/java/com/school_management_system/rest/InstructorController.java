@@ -40,4 +40,9 @@ public class InstructorController {
         return instructorService.deleteInstructor(instructorId);
     }
 
+    @PutMapping("/instructors")
+    public DefaultResponseData updateInstructorById(@RequestBody InstructorRequestData instructorRequestData){
+        return instructorService.updateInstructorById(instructorRequestData);
+    }
+
 }

@@ -12,4 +12,5 @@ public interface InstructorService {
     public DefaultResponseData saveInstructor(InstructorRequestData instructorRequestData);
     public List<Instructor> getInstructorsAll();
     public DefaultResponseData deleteInstructor(int instructorId);
+    public DefaultResponseData updateInstructorById(InstructorRequestData instructorRequestData);
 }

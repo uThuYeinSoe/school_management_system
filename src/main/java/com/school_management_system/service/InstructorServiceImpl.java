@@ -1,6 +1,7 @@
 package com.school_management_system.service;
 
 import com.school_management_system.dto.InstructorDTO;
+import com.school_management_system.dto.InstructorDTOImpl;
 import com.school_management_system.dto.InstructorDetailDTO;
 import com.school_management_system.entity.Instructor;
 import com.school_management_system.entity.InstructorDetail;
@@ -71,5 +72,41 @@ public class InstructorServiceImpl implements InstructorService{
         drd.setMessage(message);
 
         return drd;
+    }
+
+    @Transactional
+    public DefaultResponseData updateInstructorById(InstructorRequestData instructorRequestData){
+        Instructor instructor = new Instructor();
+        InstructorDetail instructorDetail = new InstructorDetail();
+
+        System.out.println("Instructor Id " + instructorRequestData.getInstructorId());
+        System.out.println("instructorRequestData " + instructorRequestData);
+
+        instructor.setId(instructorRequestData.getInstructorId());
+        instructor.setFirstName(instructorRequestData.getFirstName());
+        instructor.setLastName(instructorRequestData.getLastName());
+        instructor.setEmail(instructorRequestData.getEmail());
+
+        instructorDetail.setId(instructorRequestData.getInstructorDetailId());
+        instructorDetail.setYoutubeChannel(instructorRequestData.getYoutubeChannel());
+        instructorDetail.setHobby(instructorRequestData.getHobby());
+
+        instructor.setInstructorDetail(instructorDetail);
+
+        DefaultResponseData drd = new DefaultResponseData();
+        Instructor returnInstructor = instructorDTO.saveInstructor(instructor);
+        System.out.println("Update Instructor Object :" + instructor);
+        if(returnInstructor != null){
+            drd.setStatus(true);
+            drd.setStatusCode(200);
+            drd.setMessage(instructorRequestData.getInstructorId() + " was Update Successfully");
+        }else{
+            drd.setStatus(false);
+            drd.setStatusCode(400);
+            drd.setMessage(instructorRequestData.getInstructorId() + " can't Update");
+        }
+
+        return drd;
+
     }
 }
